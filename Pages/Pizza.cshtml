@@ -1,0 +1,42 @@
+@page
+@* <h1>dasdasds</h1>
+    <a class="nav-link text-dark" asp-area="" asp-page="Forms/CustomPizza">Custom Pizza</a>
+    <a class="nav-link text-dark" asp-area="" asp-page="Checkout/Checkout">Checkout</a> *@
+@model pizzaproj.Pages.PizzaModel
+<div class="mainText">
+    <h1 class="display-4">Our Great collection of Pizzas</h1>
+    <h4>Chose one or tryour pizza builder! Then order and Done</h4>
+    <h4>No need to give any of the details</h4>
+    <h4>We already know everything</h4>
+    <p class="smallText">Only one pizza per order.</p>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-12 mb-5 mt-5">
+            <div class="w-100 row makeYourOwnDiv">
+                <div class="col-4">
+                    <img src="~/images/Pizzas/Create.png" class="w-100" srcset="">
+                </div>
+                <div class="col-8 align-items-center">
+                    <div class="align-middle makeYourOwnText">
+                        <h3 style="text-align: left;">Create your own Pizza</h3>
+                        <p style="text-align: left;">Make your own Pizza using our Pizza maker</p>
+                        <a class="btn btn-primary mt-1 float-left" asp-page="/Forms/CustomPizza">Try now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @foreach (var pizza in Model.fakeDB)
+        {
+            var imagePath = "~/images/Pizzas/" + (pizza.ImageTitle) + ".png";
+            <div class="col-4 mb-5">
+                <img src="@imagePath" asp-append-version=true alt="" class="w-100" />
+                <a asp-area="" asp-page="/Checkout/Checkout" asp-route-ImageTitle="@pizza.ImageTitle"
+                asp-route-PizzaPrice="@pizza.FinalPrice" class="btn btn-primary mt-2">Get this Pizza</a>
+            </div>
+            <br />
+        }
+
+    </div>
+</div>
